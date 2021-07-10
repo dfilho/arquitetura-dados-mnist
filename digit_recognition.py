@@ -11,8 +11,8 @@ from skimage.util import random_noise
 
  
 def digit_recogntion():
-    train = pd.read_csv('digit_recognition/mnist_train.csv')
-    test = pd.read_csv('digit_recognition/mnist_test.csv')
+    train = pd.read_csv('input/mnist_train.csv')
+    test = pd.read_csv('input/mnist_test.csv')
 
     #trainnum=5000
     #testnum=5000
@@ -31,30 +31,30 @@ def digit_recogntion():
 
     #return
     #x_train_st = standardization(x_train)
-    #x_train_deskew = deskew_image_array(x_train)
+    x_train_deskew = deskew_image_array(x_train)
     #x_train_hog_descriptor = hog_descriptor(x_train)
     #x_train_gaussian_image = gaussian_blur_image_array(x_train)
     #x_train_binarized = numeric_array_binarization(x_train)
     #x_train_canny_image = canny_image_array(x_train_binarized) -- Canny diminuiu muito a acuracia
-    x_train_median_image_blur = median_image_blur_array(x_train)
+    #x_train_median_image_blur = median_image_blur_array(x_train)
     #x_train_sharpening_image_array = sharpening_image_array(x_train)
     #x_train_binarized = numeric_array_binarization(x_train_median_image_blur)
     #x_train_dilated_image = dilation_image_array(x_train_binarized) -- Não compensa usar
-    #x_train_st = standardization(x_train_deskew)
+    x_train_st = standardization(x_train_deskew)
 
     #plot_numbers(x_train_binarized)
     #return
     #x_test_st = standardization(x_train)
-    #x_test_deskew = deskew_image_array(x_test)
+    x_test_deskew = deskew_image_array(x_test)
     #x_test_hog_descriptor = hog_descriptor(x_train)
     #x_test_gaussian_image = gaussian_blur_image_array(x_test)
     #x_test_binarized = numeric_array_binarization(x_test)
     #x_test_canny_image = canny_image_array(x_test_binarized) -- Canny diminuiu muito a acuracia
-    x_test_median_image_blur = median_image_blur_array(x_test)
+    #x_test_median_image_blur = median_image_blur_array(x_test)
     #x_test_sharpening_image_array = sharpening_image_array(x_test)
     #x_test_binarized = numeric_array_binarization(x_test_median_image_blur)
     #x_test_dilated_image = dilation_image_array(x_test_binarized) -- Não compensa usar
-    #x_test_st = standardization(x_test_deskew)
+    x_test_st = standardization(x_test_deskew)
 
     #plot_numbers(x_train)
     #plot_numbers(x_train_median_image_blur)
@@ -63,7 +63,7 @@ def digit_recogntion():
     # plt.imshow(x_train_median_image_blur[0].reshape(28,28), cmap='gray')
     # plt.show()
 
-    classification(x_train_median_image_blur, y_train, x_test_median_image_blur, y_test)
+    classification(x_train_st, y_train, x_test_st, y_test)
 
 def dilation_image_array(numeric_array) -> np.ndarray:
     dilation_array = []
